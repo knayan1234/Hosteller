@@ -1,8 +1,8 @@
 <?php
+require "./conn.php";
 $key=$_REQUEST["id"];
-mysql_select_db("hostel_project",mysql_connect("127.0.0.1","root",""));
-$res1=mysql_query("select * from hostel where location='$key'");
-while(($rows1=mysql_fetch_array($res1)))
+$res1=mysqli_query($conn,"select * from hostel where location='$key'");
+while(($rows1=mysqli_fetch_array($res1)))
 {
 ?>
 <div class="card-group">

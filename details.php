@@ -29,12 +29,12 @@
 <div class="card-group">
 <?php
 $key=$_REQUEST["id"];
+require "./conn.php";
 
-mysql_select_db("hostel_project",mysql_connect("127.0.0.1","root",""));
-$res1=mysql_query("select * from hostel where hname='$key'");
+$res1=mysqli_query($conn,"select * from hostel where hname='$key'");
 ?>
  <?php
-if(($rows1=mysql_fetch_array($res1)))
+if(($rows1=mysqli_fetch_array($res1)))
 {
 ?>
 <div class="card">

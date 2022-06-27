@@ -183,7 +183,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="index.php">
+      <form action="index.php" method="post">
       <div class="input-group">
        
         <span class="input-group-text">First and last name</span>
@@ -321,6 +321,7 @@
 
 
 <?php
+require "./conn.php";
 if(isset($_REQUEST["x"]))
 {
 $p1=$_REQUEST["id1"];
@@ -332,9 +333,9 @@ $p6=$_REQUEST["e"];
 $p7=$_REQUEST["d"];
 $p8=$_REQUEST["t"];
 $p9=$_REQUEST["l"];
-$conn=mysql_connect("127.0.0.1","root","");
-mysql_select_db("hostel_project",$conn);
-mysql_query("insert into hostel values('$p1','$p2','$p3','$p4','$p5','$p6','$p7','$p8','$p9')");
+
+
+mysqli_query($conn,"insert into hostel values('$p1','$p2','$p3','$p4','$p5','$p6','$p7','$p8','$p9')");
 ?>
 <script>alert("Your Hostel Is Registered");</script>
 <?php
@@ -345,6 +346,7 @@ mysql_query("insert into hostel values('$p1','$p2','$p3','$p4','$p5','$p6','$p7'
 
 
 <?php
+require "./conn.php";
 if(isset($_REQUEST["c"]))
 {
 $p1=$_REQUEST["fn"];
@@ -354,9 +356,14 @@ $p4=$_REQUEST["id1"];
 $p5=$_REQUEST["e"];
 $p6=$_REQUEST["p"];
 
-$conn=mysql_connect("127.0.0.1","root","");
-mysql_select_db("hostel_project",$conn);
-mysql_query("insert into hostel_info values('$p1','$p2','$p3','$p4','$p5','$p6')");
+$sql="insert into hostel_info values('$p1','$p2','$p3','$p4','$p5','$p6')";
+$result=mysqli_query($conn,$sql);
+if($result)
+{$smstext="Dear ".$name." , \nThank you, user added";
+  echo $smstext;
+  
+  
+}
 ?>
 <script>alert("You are registered !!!");</script>
 <?php

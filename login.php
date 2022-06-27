@@ -57,12 +57,11 @@
 
       </ul>
       <?php
+      require "./conn.php";
 $x1=$_REQUEST["e"];
 $x2=$_REQUEST["p"];
-$conn=mysql_connect("127.0.0.1","root","");
-mysql_select_db("hostel_project",$conn);
-$res=mysql_query("select * from hostel_info where email='$x1' and password='$x2'");
-if(($rows=mysql_fetch_array($res)))
+$res=mysqli_query($conn,"select * from hostel_info where email='$x1' and password='$x2'");
+if(($rows=mysqli_fetch_array($res)))
 {
 $_SESSION["name"]=$rows[0];
 header("location:profile.php");

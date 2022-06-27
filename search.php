@@ -1,9 +1,7 @@
 <?php
 $key=$_REQUEST["id"];
-$conn=mysql_connect("127.0.0.1","root","");
-mysql_select_db("hostel_project",$conn);
-$res=mysql_query("select * from hostel where location='$key'");
-while(($rows=mysql_fetch_array($res)))
+$res=mysqli_query($conn,"select * from hostel where location='$key'");
+while(($rows=mysqli_fetch_array($res)))
 {
 ?>
 <img  height="400" width="230" src='img/<?php echo$rows[0];?>'>
